@@ -3,7 +3,7 @@ package features;
 import io.restassured.RestAssured;
 import org.junit.jupiter.api.Test;
 
-public class Session1Test {
+public class Session1Test extends BaseTest{
 
     @Test
     void test1() {
