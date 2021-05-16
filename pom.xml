@@ -19,7 +19,8 @@
         <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>rest-assured</artifactId>
-            <version>4.2.0</version>
+            <version>4.3.3</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -90,6 +91,7 @@
             <version>4.3.1</version>
         </dependency>
     </dependencies>
+
     <build>
         <plugins>
             <plugin>
@@ -153,8 +155,11 @@
                 <artifactId>maven-clean-plugin</artifactId>
                 <version>3.1.0</version>
                 <configuration>
-                    <directory>${basedir}/allure-results</directory>
-                    <directory>${basedir}/target</directory>
+                    <filesets>
+                        <fileset>
+                            <directory>allure-results</directory>
+                        </fileset>
+                    </filesets>
                 </configuration>
             </plugin>
         </plugins>

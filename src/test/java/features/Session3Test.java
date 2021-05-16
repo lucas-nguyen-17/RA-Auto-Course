@@ -2,7 +2,6 @@ package features;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
-import models.Person;
 import models.employee.*;
 import models.logic.TargetObject;
 import org.junit.jupiter.api.Test;

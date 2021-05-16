@@ -1,13 +1,12 @@
 package features;
 
 import com.jayway.jsonpath.JsonPath;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.RestAssured;
-import io.restassured.filter.log.LogDetail;
-import io.restassured.filter.log.RequestLoggingFilter;
-import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.http.ContentType;
 import org.assertj.core.api.SoftAssertions;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
@@ -15,15 +14,16 @@ import java.util.List;
 import java.util.Map;
 
 import static io.restassured.RestAssured.get;
-import static io.restassured.RestAssured.post;
 import static org.assertj.core.api.Assertions.assertThat;
 
+@Tag("5")
 public class Session5Test {
 
-    String response;
+    static String response;
 
-    @BeforeEach
-    void setUp() {
+    @BeforeAll
+    static void setUp() {
+        RestAssured.filters(new AllureRestAssured());
         response = get("https://run.mocky.io/v3/060803e9-f05f-420e-97ad-49a1dba5cd5a")
                 .asString();
     }
@@ -44,14 +44,12 @@ public class Session5Test {
     @Test
     void test2() {
         List<String> authors = JsonPath.read(response, "$.store.book[*].author");
-        System.out.println(authors);
         assertThat(authors).as("all authors").contains("Nigel Rees", "Herman Melville");
     }
 
     @Test
     void test3() {
         Map<String, Object> firstBook = JsonPath.read(response, "$.store.book[0]");
-        System.out.println(firstBook);
         assertThat(firstBook.get("author")).isEqualTo("Nigel Rees");
         assertThat(firstBook.get("price")).isEqualTo(8.95);
     }
@@ -59,7 +57,6 @@ public class Session5Test {
     @Test
     void test4() {
         List<Map<String, Object>> books = JsonPath.read(response, "$..book[*]");
-        books.forEach(System.out::println);
         assertThat(books.get(3).get("isbn")).as("isbn").isEqualTo("0-395-19395-8");
     }
 
@@ -72,7 +69,6 @@ public class Session5Test {
     @Test
     void test6() {
         List<String> titles = JsonPath.read(response, "$..book[?(@.price == 12.99)].title");
-        System.out.println(titles);
         assertThat(titles).contains("Sword of Honour");
     }
 
@@ -80,14 +76,12 @@ public class Session5Test {
     void test7() {
         String path = "$..book[?(@.price > 12.9 && @.isbn == '0-395-19395-8')].title";
         List<String> titles = JsonPath.read(response, path);
-        System.out.println(titles);
     }
 
     @Test
     void test8() {
         response = get("https://run.mocky.io/v3/dc86d6fc-a514-419a-8919-5baeb28add4d").asString();
         List<String> titles = JsonPath.read(response, "$..book[?(@.name.age == 15)].title");
-        System.out.println(titles);
     }
 
     @Test
@@ -103,7 +97,6 @@ public class Session5Test {
 
     @Test
     void test10() {
-        RestAssured.filters(new RequestLoggingFilter(LogDetail.HEADERS), new ResponseLoggingFilter(LogDetail.BODY));
         RestAssured.given().contentType(ContentType.JSON)
                 .body(new File("src/test/resources/books.json"))
                 .post("https://postman-echo.com/post");
@@ -111,7 +104,6 @@ public class Session5Test {
 
     @Test
     void test11() {
-        RestAssured.enableLoggingOfRequestAndResponseIfValidationFails(LogDetail.BODY);
         RestAssured.given().contentType(ContentType.JSON)
                 .body(new File("src/test/resources/books.json"))
                 .post("https://postman-echo.com/post")

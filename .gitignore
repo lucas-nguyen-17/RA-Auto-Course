@@ -2,3 +2,4 @@
 allure-results/
 target/
 *.iml
+.allure
