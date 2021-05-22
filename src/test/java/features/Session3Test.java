@@ -1,29 +1,34 @@
 package features;
 
+import api.echo.PostEcho;
+import builder.EmployeeObjectBuilder;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
+import io.restassured.response.Response;
 import models.employee.*;
 import models.logic.TargetObject;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+import static api.authentication.PostLogin.ADMIN_TOKEN;
+
 public class Session3Test {
+    PostEcho postEcho;
+
+    @BeforeEach
+    void setUp() {
+        postEcho = new PostEcho();
+    }
 
     @Test
     void test1() {
-        EmployeeObject employee = new EmployeeObject();
-        employee.setAccount(new AccountObject());
-        employee.setColors(Arrays.asList("red", "yellow", "pink"));
-        employee.setStar(4.5);
-
-        RestAssured.given()
-                .log().body(true)
-                .contentType(ContentType.JSON)
-                .body(employee)
-                .post("https://postman-echo.com/post");
+        EmployeeObject employee = EmployeeObjectBuilder.createDefault();
+        Response res = postEcho.get(employee, ADMIN_TOKEN);
+        res.prettyPrint();
     }
 
     @Test
