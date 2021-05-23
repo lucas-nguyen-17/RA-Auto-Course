@@ -1,4 +1,4 @@
-package models.download;
+package models.request.download;
 
 import com.opencsv.bean.CsvBindByName;
 import lombok.Data;

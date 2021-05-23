@@ -3,12 +3,11 @@ package features;
 import api.upload.PostUpload;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
-import models.download.BookCsvObject;
+import models.request.download.BookCsvObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import utilities.FileHelper;
 
-import java.io.File;
 import java.nio.file.Path;
 import java.util.List;
 

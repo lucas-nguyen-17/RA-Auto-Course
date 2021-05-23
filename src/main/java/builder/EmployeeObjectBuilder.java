@@ -1,7 +1,7 @@
 package builder;
 
-import models.employee.AccountObject;
-import models.employee.EmployeeObject;
+import models.request.employee.AccountObject;
+import models.request.employee.EmployeeObject;
 
 import java.util.Arrays;
 

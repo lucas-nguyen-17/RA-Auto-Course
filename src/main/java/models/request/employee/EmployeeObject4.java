@@ -1,4 +1,4 @@
-package models.employee;
+package models.request.employee;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;

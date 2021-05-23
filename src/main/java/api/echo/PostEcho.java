@@ -2,7 +2,7 @@ package api.echo;
 
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
-import models.employee.EmployeeObject;
+import models.request.employee.EmployeeObject;
 import utilities.ReqHeader;
 
 public class PostEcho {

@@ -1,4 +1,4 @@
-package models.logic;
+package models.request.logic;
 
 import lombok.Data;
 

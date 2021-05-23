@@ -5,8 +5,8 @@ import builder.EmployeeObjectBuilder;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
-import models.employee.*;
-import models.logic.TargetObject;
+import models.request.employee.*;
+import models.request.logic.TargetObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

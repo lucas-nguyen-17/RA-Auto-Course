@@ -3,7 +3,7 @@ package api.authentication;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
-import models.authentication.UserObject;
+import models.request.authentication.UserObject;
 
 public class PostLogin {
 
