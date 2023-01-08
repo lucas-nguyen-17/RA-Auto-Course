@@ -9,7 +9,7 @@ public class ReqHeader {
 
     public static RequestSpecification withToken(String token) {
         return new RequestSpecBuilder().setContentType(JSON)
-                .addHeader("Authrozation", "Bearer " + token)
+                .addHeader("Authorization", "Bearer " + token)
                 .build();
     }
     

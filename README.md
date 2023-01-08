@@ -51,7 +51,7 @@ setup proxy cho maven.
 
 `mvn clean test -Denvironment="environmentName" `
 
-- Run Test theo environment& tags
+- Run Test theo environment & tags
 
 `mvn clean test -Dgroups="tagName" -Denvironment="environmentName" `
 
